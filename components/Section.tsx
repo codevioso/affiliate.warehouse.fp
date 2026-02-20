@@ -25,7 +25,7 @@ export function Section({
     <section
       id={id}
       ref={ref}
-      className={cn("scroll-mt-24 py-14 sm:py-16", className)}
+      className={cn("py-14 sm:py-16", className)}
     >
       <div
         className={cn(

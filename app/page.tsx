@@ -6,7 +6,11 @@ import { Hero } from "@/components/Hero";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TrackingPreview } from "@/components/TrackingPreview";
 import { PricingModel } from "@/components/PricingModel";
+import { FeesIncentives } from "@/components/FeesIncentives";
+import { NoLockIns } from "@/components/NoLockIns";
 import { FAQ } from "@/components/FAQ";
+import { ComplianceEthics } from "@/components/ComplianceEthics";
+import { LegalDisclaimer } from "@/components/LegalDisclaimer";
 import { PreferredContractorAccessForm } from "@/components/LeadForm";
 import { Footer } from "@/components/Footer";
 import { Modal } from "@/components/Modal";
@@ -25,7 +29,37 @@ export default function Home() {
         <HowItWorks />
         <TrackingPreview />
         <PricingModel onRequestAccess={() => setModalOpen(true)} />
+        <FeesIncentives />
+        <NoLockIns />
         <FAQ />
+        <div className="grid w-full grid-cols-1 items-stretch lg:grid-cols-2">
+          {/* Left: 50% – Compliance & Ethics with background + content over */}
+          <div className="relative min-h-[420px] min-w-0 lg:min-h-0 lg:border-r lg:border-slate-300/80">
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(248,250,252,0.88) 50%, rgba(238,242,255,0.9) 100%), url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+              }}
+              aria-hidden
+            />
+            <div className="relative z-10 h-full">
+              <ComplianceEthics overlay />
+            </div>
+          </div>
+          {/* Right: 50% – Legal Disclaimer with background + content over */}
+          <div className="relative min-h-[420px] min-w-0 lg:min-h-0">
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `linear-gradient(180deg, rgba(248,250,252,0.94) 0%, rgba(255,255,255,0.9) 50%, rgba(241,245,249,0.92) 100%), url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2364748b' fill-opacity='0.05' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20v20zm40-20V0H20L0 20h20l20-20z'/%3E%3C/g%3E%3C/svg%3E")`,
+              }}
+              aria-hidden
+            />
+            <div className="relative z-10 h-full">
+              <LegalDisclaimer overlay />
+            </div>
+          </div>
+        </div>
       </main>
 
       <Footer />

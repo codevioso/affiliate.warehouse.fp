@@ -40,19 +40,26 @@ export function Hero({ onRequestAccess }: HeroProps) {
 
   return (
     <section id="top" className="relative min-h-screen min-h-[100dvh] w-full overflow-hidden border-b border-slate-200/40">
-      {/* Full-width background: base + geometric blur shapes */}
+      {/* Full-width background: base + gradient overlay */}
       <div className="absolute inset-0 aw-hero-bg" aria-hidden />
-      <div className="aw-hero-shape aw-hero-shape-1" aria-hidden />
-      <div className="aw-hero-shape aw-hero-shape-2" aria-hidden />
-      <div className="aw-hero-shape aw-hero-shape-3" aria-hidden />
-      <div className="aw-hero-shape aw-hero-shape-4" aria-hidden />
       <div
         className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-transparent to-slate-900/60"
         aria-hidden
       />
+      {/* Geometric blur shapes – above overlay so they stay visible and animated */}
+      <div className="absolute inset-0 z-[1] overflow-hidden" aria-hidden>
+        <div className="aw-hero-shape aw-hero-shape-1" />
+        <div className="aw-hero-shape aw-hero-shape-2" />
+        <div className="aw-hero-shape aw-hero-shape-3" />
+        <div className="aw-hero-shape aw-hero-shape-4" />
+        <div className="aw-hero-shape aw-hero-shape-5" />
+        <div className="aw-hero-shape aw-hero-shape-6" />
+        <div className="aw-hero-shape aw-hero-shape-7" />
+        <div className="aw-hero-shape aw-hero-shape-8" />
+      </div>
 
       {/* Content: centered in viewport, clear and animated */}
-      <div className="relative flex min-h-screen min-h-[100dvh] w-full items-center">
+      <div className="relative z-10 flex min-h-screen min-h-[100dvh] w-full items-center">
         <div className="mx-auto w-full max-w-[1200px] px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
             {/* Left: copy */}

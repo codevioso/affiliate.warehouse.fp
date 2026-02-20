@@ -11,7 +11,7 @@ export function ProblemStrip() {
     <section
       id="problem"
       ref={ref}
-      className="relative scroll-mt-24 min-h-screen min-h-[100dvh] overflow-hidden"
+      className="relative min-h-screen min-h-[100dvh] overflow-hidden"
     >
       {/* Animated background */}
       <div

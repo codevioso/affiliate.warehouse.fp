@@ -33,7 +33,7 @@ export function TrustStrip() {
   return (
     <section
       id="trust-points"
-      className="scroll-mt-24 border-y border-slate-200/60 bg-gradient-to-r from-slate-50 via-white to-slate-50 py-4 sm:py-5"
+      className="border-y border-slate-200/60 bg-gradient-to-r from-slate-50 via-white to-slate-50 py-4 sm:py-5"
     >
       <div className="relative overflow-hidden">
         <div

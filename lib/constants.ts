@@ -23,6 +23,7 @@ export const NAV_ITEMS: NavItem[] = [
   { id: "how", label: "How it works", href: "#how-it-works" },
   { id: "tracking", label: "Tracking", href: "#tracking" },
   { id: "pricing", label: "Pricing", href: "#pricing" },
+  { id: "fees", label: "Fees & incentives", href: "#fees" },
   { id: "faq", label: "FAQ", href: "#faq" },
 ];
 
@@ -74,29 +75,39 @@ export const STEPS: Step[] = [
 
 export const FAQS: FAQItem[] = [
   {
-    question: "Do I have to change wholesalers?",
+    question: "What wholesaler accounts do I get access to?",
     answer:
-      "No. Affiliate Warehouse is designed to be wholesaler-safe. You keep your current relationships and choose when to use any improved pricing access.",
+      "Where available, preferred contractors can get access to trade accounts such as TradeZone, Ideal Electrical, and Voltex. Access depends on supplier approval and terms.",
   },
   {
-    question: "What does “No discount = no charge” mean?",
+    question: "How does Affiliate Warehouse make money?",
     answer:
-      "If we don’t improve your pricing access in a way that helps your landed cost, there’s no performance fee.",
+      "Affiliate Warehouse retains 1.1% of verified discount only. There is no fee when there is no discount.",
   },
   {
-    question: "Is there a contract or minimum spend?",
+    question: "Am I locked in?",
     answer:
-      "No lock-ins and no minimums. You stay in control of where you buy and when you use the service.",
+      "No. There are no contracts or lock-ins. Participation is voluntary and you can stop using the service at any time.",
   },
   {
-    question: "How do price alerts work?",
+    question: "How do I know pricing is improving?",
     answer:
-      "Alerts are optional. You can track specific lines or categories and receive notifications when pricing changes.",
+      "You can compare against your original trade accounts. Side-by-side visibility lets you see the difference on the same products and suppliers.",
   },
   {
-    question: "Is this compliant for suppliers and wholesalers?",
+    question: "Is this compliant with supplier systems?",
     answer:
-      "We take a conservative approach: no diversion, no public discount claims, and a review process aligned with standard trade account practices.",
+      "Yes — same backend access and traceability. All purchases remain job-coded, fully traceable, and processed through normal wholesaler channels.",
+  },
+  {
+    question: "What if it stops being useful?",
+    answer:
+      "Stop using it at any time. There are no lock-ins or minimums.",
+  },
+  {
+    question: "How are better prices achieved?",
+    answer:
+      "Through aggregated purchasing volume across our independent preferred contractors nationally. Volume and consistency can support access to pricing tiers that benefit both contractors and suppliers, within existing wholesaler systems.",
   },
 ];
 

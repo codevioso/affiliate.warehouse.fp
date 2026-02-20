@@ -9,7 +9,7 @@ type HeaderProps = {
     onRequestAccess: () => void;
 };
 
-const SECTION_IDS = ["top", "problem", "how-it-works", "tracking", "pricing", "faq"] as const;
+const SECTION_IDS = ["top", "problem", "how-it-works", "tracking", "pricing", "fees", "faq"] as const;
 
 export function Header({ onRequestAccess }: HeaderProps) {
     const [scrolled, setScrolled] = React.useState(false);
@@ -47,10 +47,10 @@ export function Header({ onRequestAccess }: HeaderProps) {
     return (
         <header
             className={cn(
-                "fixed left-0 right-0 top-0 z-50 border-b transition-all duration-300",
+                "fixed left-0 right-0 top-0 z-50 min-h-16 border-b transition-all duration-300",
                 atTop
-                    ? "border-white/10 bg-slate-900/90 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-900/80"
-                    : "border-slate-200/60 bg-white/90 shadow-sm backdrop-blur-xl supports-[backdrop-filter]:bg-white/80"
+                    ? "border-white/10 bg-slate-900"
+                    : "border-slate-200/60 bg-white"
             )}
         >
             <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
@@ -67,11 +67,11 @@ export function Header({ onRequestAccess }: HeaderProps) {
                     </span>
                     <span className="hidden sm:inline">
                         <span className={atTop ? "text-white" : "text-slate-900"}>Affiliate</span>
-                        <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent"> Warehouse</span>
+                        <span className="text-amber-500"> Warehouse</span>
                     </span>
                     <span className="sm:hidden">
                         <span className={atTop ? "text-white" : "text-slate-900"}>A</span>
-                        <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">W</span>
+                        <span className="text-amber-500">W</span>
                     </span>
                 </a>
 
@@ -100,7 +100,7 @@ export function Header({ onRequestAccess }: HeaderProps) {
 
                 <div className="flex items-center gap-2">
                     <CTAButton variant="orange" onClick={onRequestAccess}>
-                        Request Preferred Contractor Access
+                        Apply Now
                     </CTAButton>
                 </div>
             </div>

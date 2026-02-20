@@ -106,7 +106,7 @@ export function HowItWorks() {
     <section
       id="how-it-works"
       ref={ref}
-      className="relative scroll-mt-24 min-h-screen min-h-[100dvh] overflow-hidden"
+      className="relative min-h-screen min-h-[100dvh] overflow-hidden"
     >
       {/* Light animated background */}
       <div

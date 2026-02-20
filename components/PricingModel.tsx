@@ -52,7 +52,7 @@ export function PricingModel({ onRequestAccess }: PricingModelProps) {
     <section
       id="pricing"
       ref={ref}
-      className="relative scroll-mt-24 overflow-hidden border-t border-slate-200/60 bg-gradient-to-b from-slate-50 via-white to-violet-50/30 py-16 sm:py-20"
+      className="relative overflow-hidden border-t border-slate-200/60 bg-gradient-to-b from-slate-50 via-white to-violet-50/30 py-16 sm:py-20"
     >
       <div className="relative mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
         {/* Headline */}
