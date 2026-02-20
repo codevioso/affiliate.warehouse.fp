@@ -3,15 +3,11 @@
 import * as React from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { TrustStrip } from "@/components/TrustStrip";
-import { ProblemStrip } from "@/components/ProblemStrip";
-import { Features } from "@/components/Features";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TrackingPreview } from "@/components/TrackingPreview";
 import { PricingModel } from "@/components/PricingModel";
-import { TrustCompliance } from "@/components/TrustCompliance";
 import { FAQ } from "@/components/FAQ";
-import { LeadForm, PreferredContractorAccessForm } from "@/components/LeadForm";
+import { PreferredContractorAccessForm } from "@/components/LeadForm";
 import { Footer } from "@/components/Footer";
 import { Modal } from "@/components/Modal";
 import { CTAButton } from "@/components/CTAButton";
@@ -26,15 +22,10 @@ export default function Home() {
       <main className="relative pt-16 pb-24 sm:pb-0">
         <div className="pointer-events-none fixed inset-0 aw-gradient-mesh aw-gradient-mesh-animated" aria-hidden />
         <Hero onRequestAccess={() => setModalOpen(true)} />
-        <TrustStrip />
-        <ProblemStrip />
-        <Features />
         <HowItWorks />
         <TrackingPreview />
         <PricingModel onRequestAccess={() => setModalOpen(true)} />
-        <TrustCompliance />
         <FAQ />
-        <LeadForm />
       </main>
 
       <Footer />

@@ -153,7 +153,7 @@ export function HowItWorks() {
               </span>
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-base text-slate-600 sm:text-lg">
-              A straightforward process designed to keep your purchasing approach intact. No disruption to existing wholesaler relationships.
+              Our Independent preferred contractors choose to participate together. No disruption to existing wholesaler relationships.
             </p>
           </div>
 

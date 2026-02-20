@@ -56,6 +56,7 @@ const BADGES = [
   { label: "Quoting", color: "violet" },
   { label: "Audits", color: "teal" },
   { label: "Margin review", color: "amber" },
+  { label: "Cost control", color: "emerald" },
 ];
 
 function ChangeBarChart({ inView }: { inView: boolean }) {
@@ -204,7 +205,7 @@ export function TrackingPreview() {
             )}
           >
             <span className="inline-block rounded-full border border-violet-400/40 bg-violet-500/20 px-4 py-1.5 text-sm font-semibold text-violet-300">
-              Preview
+              Price Tracking & Notifications
             </span>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
               A clean view of{" "}
@@ -215,6 +216,74 @@ export function TrackingPreview() {
             <p className="mx-auto mt-3 max-w-2xl text-base text-slate-400 sm:text-lg">
               Table-style visibility for common lines—built for quoting, audits, and margin review.
             </p>
+            <div className="mx-auto mt-5 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-2">
+              {[
+                {
+                  text: "System monitors pricing over time.",
+                  accent: "violet",
+                  icon: (
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 20V10M18 20V4M6 20v-4" />
+                    </svg>
+                  ),
+                },
+                {
+                  text: "Optional notifications for price movements.",
+                  accent: "teal",
+                  icon: (
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                  ),
+                },
+                {
+                  text: "Supports quoting accuracy and cost control.",
+                  accent: "amber",
+                  icon: (
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                    </svg>
+                  ),
+                },
+                {
+                  text: "Improves visibility for repeat purchases.",
+                  accent: "emerald",
+                  icon: (
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  ),
+                },
+              ].map((item) => (
+                <div
+                  key={item.text}
+                  className={cn(
+                    "flex items-center gap-3 rounded-xl border border-slate-600/50 bg-slate-800/60 py-2.5 pl-3 pr-4 backdrop-blur-sm",
+                    "border-l-4",
+                    item.accent === "violet" && "border-l-violet-400/70",
+                    item.accent === "teal" && "border-l-teal-400/70",
+                    item.accent === "amber" && "border-l-amber-400/70",
+                    item.accent === "emerald" && "border-l-emerald-400/70"
+                  )}
+                >
+                  <span
+                    className={cn(
+                      "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
+                      item.accent === "violet" && "bg-violet-500/20 text-violet-300",
+                      item.accent === "teal" && "bg-teal-500/20 text-teal-300",
+                      item.accent === "amber" && "bg-amber-500/20 text-amber-300",
+                      item.accent === "emerald" && "bg-emerald-500/20 text-emerald-300"
+                    )}
+                    aria-hidden
+                  >
+                    {item.icon}
+                  </span>
+                  <span className="text-sm font-medium text-slate-300 sm:text-base">{item.text}</span>
+                </div>
+              ))}
+            </div>
             <div className="mt-4 flex flex-wrap justify-center gap-2">
               {BADGES.map((b) => (
                 <span
@@ -223,7 +292,8 @@ export function TrackingPreview() {
                     "rounded-full px-3 py-1 text-xs font-semibold",
                     b.color === "violet" && "bg-violet-500/30 text-violet-200",
                     b.color === "teal" && "bg-teal-500/30 text-teal-200",
-                    b.color === "amber" && "bg-amber-500/30 text-amber-200"
+                    b.color === "amber" && "bg-amber-500/30 text-amber-200",
+                    b.color === "emerald" && "bg-emerald-500/30 text-emerald-200"
                   )}
                 >
                   {b.label}
@@ -313,7 +383,7 @@ export function TrackingPreview() {
                 ))}
               </div>
               <div className="border-t border-slate-600/50 bg-slate-700/60 px-4 py-3.5 text-sm text-slate-400 sm:px-5 sm:py-4">
-                Optional alerts can flag changes for tracked lines without creating supplier disruption.
+                Optional notifications for price movements. Alerts can flag changes for tracked lines without creating supplier disruption.
               </div>
             </div>
 
@@ -343,7 +413,7 @@ export function TrackingPreview() {
             style={{ transitionDelay: "380ms" }}
           >
             <p className="text-sm text-slate-500">
-              All pricing from wholesalers · Job-coded for traceability
+              Improves visibility for repeat purchases · All pricing from wholesalers · Job-coded for traceability
             </p>
           </div>
         </div>

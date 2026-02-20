@@ -61,11 +61,10 @@ export function Hero({ onRequestAccess }: HeroProps) {
                 className="aw-hero-animate text-4xl font-extrabold leading-[1.15] tracking-tight sm:text-5xl lg:text-6xl"
                 style={{ animationDelay: `${STAGGER}ms` }}
               >
-                <span className="text-white">Corporate pricing access</span>{" "}
-                <span className="text-amber-300">for trade contractors</span>
+                <span className="text-white">We Help Our preferred contractors Access Better Pricing</span>
                 <br />
-                <em className="font-bold not-italic text-slate-200 text-2xl sm:text-3xl lg:text-4xl">
-                  — without changing wholesalers
+                <em className="font-bold not-italic text-amber-300 text-2xl sm:text-3xl lg:text-4xl">
+                  — Transparently
                 </em>
               </h1>
 
@@ -87,7 +86,7 @@ export function Hero({ onRequestAccess }: HeroProps) {
                   onClick={onRequestAccess}
                   className="text-center"
                 >
-                  Request Preferred Contractor Access
+                  Apply to Become a Preferred Contractor
                 </CTAButton>
                 <CTAButton
                   variant="secondary"

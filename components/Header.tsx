@@ -9,7 +9,7 @@ type HeaderProps = {
     onRequestAccess: () => void;
 };
 
-const SECTION_IDS = ["top", "problem", "features", "how-it-works", "tracking", "pricing", "trust", "faq", "contact"] as const;
+const SECTION_IDS = ["top", "problem", "how-it-works", "tracking", "pricing", "faq"] as const;
 
 export function Header({ onRequestAccess }: HeaderProps) {
     const [scrolled, setScrolled] = React.useState(false);
@@ -41,7 +41,7 @@ export function Header({ onRequestAccess }: HeaderProps) {
         return () => observer.disconnect();
     }, []);
 
-    const navItems = NAV_ITEMS.filter((i) => i.id !== "contact");
+    const navItems = NAV_ITEMS;
     const atTop = !scrolled; // dark at top, light when scrolled
 
     return (
@@ -99,19 +99,6 @@ export function Header({ onRequestAccess }: HeaderProps) {
                 </nav>
 
                 <div className="flex items-center gap-2">
-                    <a
-                        href="#contact"
-                        className={cn(
-                            "hidden rounded-lg px-3 py-2 text-sm font-semibold transition sm:inline-flex",
-                            atTop
-                                ? "text-slate-300 hover:bg-white/10 hover:text-white"
-                                : "text-slate-700 hover:bg-orange-50 hover:text-orange-700",
-                            activeId === "contact" && atTop && "text-amber-400",
-                            activeId === "contact" && !atTop && "text-orange-600"
-                        )}
-                    >
-                        Contact
-                    </a>
                     <CTAButton variant="orange" onClick={onRequestAccess}>
                         Request Preferred Contractor Access
                     </CTAButton>

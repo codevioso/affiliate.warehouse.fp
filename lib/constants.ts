@@ -20,13 +20,10 @@ export type FAQItem = {
 };
 
 export const NAV_ITEMS: NavItem[] = [
-  { id: "features", label: "Features", href: "#features" },
   { id: "how", label: "How it works", href: "#how-it-works" },
   { id: "tracking", label: "Tracking", href: "#tracking" },
   { id: "pricing", label: "Pricing", href: "#pricing" },
-  { id: "trust", label: "Trust & compliance", href: "#trust" },
   { id: "faq", label: "FAQ", href: "#faq" },
-  { id: "contact", label: "Contact", href: "#contact" },
 ];
 
 export const FEATURES: Feature[] = [
@@ -54,24 +51,24 @@ export const FEATURES: Feature[] = [
 
 export const STEPS: Step[] = [
   {
-    title: "Request access",
+    title: "Participate together",
     description:
-      "Submit basic business details so we can confirm eligibility and fit.",
+      "Rather than purchasing separately through individual accounts, preferred contractors may purchase through our national corporate accounts. Aggregated purchasing volumes may enable access to pricing structures typically available to larger operators, subject to supplier approval and terms.",
   },
   {
-    title: "Connect suppliers",
+    title: "Order through wholesaler access",
     description:
-      "List primary supplier(s). We help set up corporate-level trade access where available.",
+      "Contractors order as normal through Affiliate Warehouse-enabled wholesaler access.",
   },
   {
-    title: "Track & compare",
+    title: "Optional price alerts",
     description:
-      "Monitor key items and categories, with optional price-change alerts.",
+      "Optional email alerts notify users when prices increase or decrease compared to prior purchases.",
   },
   {
-    title: "Use on live jobs",
+    title: "Compare pricing anytime",
     description:
-      "Apply improved pricing where it helps; no lock-ins, no obligations.",
+      "Pricing can be compared at any time against their original trade accounts.",
   },
 ];
 
