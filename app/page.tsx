@@ -12,20 +12,30 @@ import { FAQ } from "@/components/FAQ";
 import { ComplianceEthics } from "@/components/ComplianceEthics";
 import { LegalDisclaimer } from "@/components/LegalDisclaimer";
 import { PreferredContractorAccessForm } from "@/components/LeadForm";
+import { CallBackLeadForm } from "@/components/CallBackLeadForm";
+import { WholesalerExpressionForm } from "@/components/WholesalerExpressionForm";
 import { Footer } from "@/components/Footer";
 import { Modal } from "@/components/Modal";
 import { CTAButton } from "@/components/CTAButton";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = React.useState(false);
+  const [callbackModalOpen, setCallbackModalOpen] = React.useState(false);
+  const [wholesalerModalOpen, setWholesalerModalOpen] = React.useState(false);
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Header onRequestAccess={() => setModalOpen(true)} />
+      <Header
+        onRequestAccess={() => setModalOpen(true)}
+        onRequestCallback={() => setCallbackModalOpen(true)}
+      />
 
       <main className="relative pt-16 pb-24 sm:pb-0">
         <div className="pointer-events-none fixed inset-0 aw-gradient-mesh aw-gradient-mesh-animated" aria-hidden />
-        <Hero onRequestAccess={() => setModalOpen(true)} />
+        <Hero
+          onRequestAccess={() => setModalOpen(true)}
+          onRequestWholesaler={() => setWholesalerModalOpen(true)}
+        />
         <HowItWorks />
         <TrackingPreview />
         <PricingModel onRequestAccess={() => setModalOpen(true)} />
@@ -62,7 +72,10 @@ export default function Home() {
         </div>
       </main>
 
-      <Footer />
+      <Footer
+        onRequestCallback={() => setCallbackModalOpen(true)}
+        onRequestWholesaler={() => setWholesalerModalOpen(true)}
+      />
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-violet-200/50 bg-white/90 backdrop-blur-md shadow-[0_-4px_24px_-4px_rgba(124,58,237,0.08)] sm:hidden">
         <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between gap-3 px-4 py-3">
@@ -84,6 +97,22 @@ export default function Home() {
         onClose={() => setModalOpen(false)}
       >
         <PreferredContractorAccessForm variant="modal" />
+      </Modal>
+
+      <Modal
+        open={callbackModalOpen}
+        title="Request a call back"
+        onClose={() => setCallbackModalOpen(false)}
+      >
+        <CallBackLeadForm variant="modal" />
+      </Modal>
+
+      <Modal
+        open={wholesalerModalOpen}
+        title="Wholesaler expression of interest"
+        onClose={() => setWholesalerModalOpen(false)}
+      >
+        <WholesalerExpressionForm variant="modal" />
       </Modal>
     </div>
   );

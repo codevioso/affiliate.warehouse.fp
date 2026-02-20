@@ -9,11 +9,12 @@ import { cn } from "@/lib/utils";
 
 type HeroProps = {
   onRequestAccess: () => void;
+  onRequestWholesaler?: () => void;
 };
 
 const STAGGER = 80;
 
-export function Hero({ onRequestAccess }: HeroProps) {
+export function Hero({ onRequestAccess, onRequestWholesaler }: HeroProps) {
   const rows: MiniTableRow[] = [
     {
       item: "Cable 2.5mm (100m)",
@@ -85,7 +86,7 @@ export function Hero({ onRequestAccess }: HeroProps) {
               </p>
 
               <div
-                className="aw-hero-animate flex flex-col gap-3 sm:flex-row sm:items-center"
+                className="aw-hero-animate flex flex-col gap-3 sm:flex-row sm:items-center sm:flex-wrap"
                 style={{ animationDelay: `${STAGGER * 3}ms` }}
               >
                 <CTAButton
@@ -95,17 +96,15 @@ export function Hero({ onRequestAccess }: HeroProps) {
                 >
                   Apply to Become a Preferred Contractor
                 </CTAButton>
-                <CTAButton
-                  variant="secondary"
-                  onClick={() => {
-                    document
-                      .querySelector("#how-it-works")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="border-slate-500/50 bg-white/10 text-white hover:bg-white/20 hover:text-white"
-                >
-                  See how it works
-                </CTAButton>
+                {onRequestWholesaler && (
+                  <CTAButton
+                    variant="secondary"
+                    onClick={onRequestWholesaler}
+                    className="border-slate-500/50 bg-white/10 text-white hover:bg-white/20 hover:text-white"
+                  >
+                    For wholesalers
+                  </CTAButton>
+                )}
               </div>
 
               <div

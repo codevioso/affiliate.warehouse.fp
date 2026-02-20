@@ -2,7 +2,12 @@
 
 import { NAV_ITEMS } from "@/lib/constants";
 
-export function Footer() {
+type FooterProps = {
+  onRequestCallback?: () => void;
+  onRequestWholesaler?: () => void;
+};
+
+export function Footer({ onRequestCallback, onRequestWholesaler }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (
@@ -56,6 +61,28 @@ export function Footer() {
                     </a>
                   </li>
                 ))}
+                {onRequestCallback && (
+                  <li>
+                    <button
+                      type="button"
+                      onClick={onRequestCallback}
+                      className="text-sm text-slate-400 transition hover:text-amber-400 focus:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:ring-offset-2 focus:ring-offset-slate-900 rounded text-left"
+                    >
+                      Request a call back
+                    </button>
+                  </li>
+                )}
+                {onRequestWholesaler && (
+                  <li>
+                    <button
+                      type="button"
+                      onClick={onRequestWholesaler}
+                      className="text-sm text-slate-400 transition hover:text-amber-400 focus:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:ring-offset-2 focus:ring-offset-slate-900 rounded text-left"
+                    >
+                      Wholesaler expression of interest
+                    </button>
+                  </li>
+                )}
               </ul>
             </div>
             <div>

@@ -7,11 +7,12 @@ import { CTAButton } from "@/components/CTAButton";
 
 type HeaderProps = {
     onRequestAccess: () => void;
+    onRequestCallback?: () => void;
 };
 
 const SECTION_IDS = ["top", "problem", "how-it-works", "tracking", "pricing", "fees", "faq"] as const;
 
-export function Header({ onRequestAccess }: HeaderProps) {
+export function Header({ onRequestAccess, onRequestCallback }: HeaderProps) {
     const [scrolled, setScrolled] = React.useState(false);
     const [activeId, setActiveId] = React.useState<string | null>("top");
 
@@ -99,6 +100,20 @@ export function Header({ onRequestAccess }: HeaderProps) {
                 </nav>
 
                 <div className="flex items-center gap-2">
+                    {onRequestCallback && (
+                        <button
+                            type="button"
+                            onClick={onRequestCallback}
+                            className={cn(
+                                "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                                atTop
+                                    ? "bg-emerald-600/80 text-white hover:bg-emerald-500/90"
+                                    : "bg-emerald-600/90 text-white hover:bg-emerald-500"
+                            )}
+                        >
+                            Get a call back
+                        </button>
+                    )}
                     <CTAButton variant="orange" onClick={onRequestAccess}>
                         Apply Now
                     </CTAButton>
