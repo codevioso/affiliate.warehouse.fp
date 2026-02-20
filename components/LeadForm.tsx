@@ -5,18 +5,11 @@ import { Section } from "@/components/Section";
 import { CTAButton } from "@/components/CTAButton";
 import { cn } from "@/lib/utils";
 
-const TRADE_TYPES = ["Electrical", "HVAC", "Solar", "Other"] as const;
-const MONTHLY_SPEND = ["Under $10k", "$10k–$30k", "$30k–$80k", "$80k+"] as const;
-
 export type PreferredContractorFormValues = {
   businessName: string;
-  tradeType: (typeof TRADE_TYPES)[number] | "";
-  monthlySpendRange: (typeof MONTHLY_SPEND)[number] | "";
-  primarySuppliers: string;
   contactName: string;
-  email: string;
   mobile: string;
-  message: string;
+  email: string;
 };
 
 type PreferredContractorAccessFormProps = {
@@ -25,168 +18,171 @@ type PreferredContractorAccessFormProps = {
   className?: string;
 };
 
+const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_PREFERRED_CONTRACTOR_URL ?? "";
+
 export function PreferredContractorAccessForm({
   variant = "embedded",
   onSubmitted,
   className,
 }: PreferredContractorAccessFormProps) {
   const [submitted, setSubmitted] = React.useState(false);
+  const [submitting, setSubmitting] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
   const [values, setValues] = React.useState<PreferredContractorFormValues>({
     businessName: "",
-    tradeType: "",
-    monthlySpendRange: "",
-    primarySuppliers: "",
     contactName: "",
-    email: "",
     mobile: "",
-    message: "",
+    email: "",
   });
 
   const update = (field: keyof PreferredContractorFormValues) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       setValues((v) => ({ ...v, [field]: e.target.value }));
+      setError(null);
     };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    onSubmitted?.();
+    setError(null);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/submit-preferred-contractor", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.message ?? "Something went wrong.");
+      }
+      setSubmitted(true);
+      onSubmitted?.();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again or contact us.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
     return (
       <div
         className={cn(
-          "rounded-2xl border border-violet-200/40 bg-violet-50/50 p-6 text-sm leading-6 text-slate-700",
+          "rounded-xl border-2 border-green-500 bg-green-50 p-5 shadow-sm",
           className
         )}
         role="status"
+        aria-live="polite"
       >
-        <p className="text-sm leading-6 text-slate-700">
-          Thanks — your details have been received. We’ll review your application and follow up
-          to walk you through onboarding and answer any questions.
-        </p>
+        <div className="flex gap-3">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-500 text-white" aria-hidden>
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <div className="min-w-0">
+            <p className="font-semibold text-green-800">Success</p>
+            <p className="mt-1 text-sm leading-6 text-green-900">
+              Thanks — your details have been received. We&apos;ll review your application and call you at your scheduled time to walk through the Affiliate Warehouse onboarding process and answer any questions.
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className={cn("space-y-4", className)}>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Business name" required>
-          <input
-            value={values.businessName}
-            onChange={update("businessName")}
-            className={inputClass}
-            name="businessName"
-            autoComplete="organization"
-            required
-          />
-        </Field>
+    <div className={cn("space-y-5", className)}>
+      <p className="text-sm text-slate-600">
+        Fill in your details to become a Preferred Contractor.
+      </p>
+      <form onSubmit={onSubmit} className="space-y-4">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="Business name" required>
+            <input
+              value={values.businessName}
+              onChange={update("businessName")}
+              className={inputClass}
+              name="businessName"
+              autoComplete="organization"
+              required
+            />
+          </Field>
+          <Field label="Contact name" required>
+            <input
+              value={values.contactName}
+              onChange={update("contactName")}
+              className={inputClass}
+              name="contactName"
+              autoComplete="name"
+              required
+            />
+          </Field>
+          <Field label="Mobile" required>
+            <input
+              value={values.mobile}
+              onChange={update("mobile")}
+              className={inputClass}
+              name="mobile"
+              type="tel"
+              autoComplete="tel"
+              required
+            />
+          </Field>
+          <Field label="Email" required>
+            <input
+              value={values.email}
+              onChange={update("email")}
+              className={inputClass}
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+            />
+          </Field>
+        </div>
 
-        <Field label="Trade type" required>
-          <select
-            value={values.tradeType}
-            onChange={update("tradeType")}
-            className={inputClass}
-            name="tradeType"
-            required
-          >
-            <option value="" disabled>
-              Select…
-            </option>
-            {TRADE_TYPES.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-        </Field>
+        {CALENDLY_URL && (
+          <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-600">
+              Schedule your onboarding call
+            </p>
+            <div className="h-[360px] w-full min-h-[320px] overflow-hidden rounded-lg">
+              <iframe
+                title="Schedule onboarding call"
+                src={CALENDLY_URL}
+                className="h-full w-full"
+                frameBorder="0"
+              />
+            </div>
+          </div>
+        )}
 
-        <Field label="Monthly spend range" required>
-          <select
-            value={values.monthlySpendRange}
-            onChange={update("monthlySpendRange")}
-            className={inputClass}
-            name="monthlySpendRange"
-            required
-          >
-            <option value="" disabled>
-              Select…
-            </option>
-            {MONTHLY_SPEND.map((r) => (
-              <option key={r} value={r}>
-                {r}
-              </option>
-            ))}
-          </select>
-        </Field>
+        <div className="space-y-3">
+          <p className="text-xs leading-5 text-slate-600">
+            &quot;No discount, no charge.&quot;
+          </p>
+          <p className="text-xs leading-5 text-slate-600">
+            Compare pricing with your existing accounts anytime.
+          </p>
+        </div>
 
-        <Field label="Primary supplier(s)" required>
-          <input
-            value={values.primarySuppliers}
-            onChange={update("primarySuppliers")}
-            className={inputClass}
-            name="primarySuppliers"
-            placeholder="e.g., Rexel, Graybar, Ferguson"
-            required
-          />
-        </Field>
+        {error && (
+          <p className="text-sm text-red-600" role="alert">
+            {error}
+          </p>
+        )}
 
-        <Field label="Contact name" required>
-          <input
-            value={values.contactName}
-            onChange={update("contactName")}
-            className={inputClass}
-            name="contactName"
-            autoComplete="name"
-            required
-          />
-        </Field>
-
-        <Field label="Email" required>
-          <input
-            value={values.email}
-            onChange={update("email")}
-            className={inputClass}
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-          />
-        </Field>
-
-        <Field label="Mobile" required>
-          <input
-            value={values.mobile}
-            onChange={update("mobile")}
-            className={inputClass}
-            name="mobile"
-            type="tel"
-            autoComplete="tel"
-            required
-          />
-        </Field>
-
-        <Field label="Optional message" className="sm:col-span-2">
-          <textarea
-            value={values.message}
-            onChange={update("message")}
-            className={cn(inputClass, "min-h-[44px] resize-y py-2.5")}
-            name="message"
-            rows={variant === "modal" ? 3 : 4}
-            placeholder="Anything we should know (optional)"
-          />
-        </Field>
-      </div>
-
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs leading-5 text-slate-600">
-          By submitting, you confirm you’re requesting contractor access for your business.
-        </p>
-        <CTAButton type="submit">Submit Request</CTAButton>
-      </div>
-    </form>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs leading-5 text-slate-600">
+            By submitting, you confirm you&apos;re requesting contractor access for your business.
+          </p>
+          <CTAButton type="submit" disabled={submitting}>
+            {submitting ? "Sending…" : "Submit Request"}
+          </CTAButton>
+        </div>
+      </form>
+    </div>
   );
 }
 
@@ -196,11 +192,10 @@ export function LeadForm() {
       <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-5">
           <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            Request preferred contractor access
+            Preferred Contractor Application
           </h2>
           <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 sm:text-base">
-            Tell us a bit about your business. We’ll review your application and follow up with
-            next steps.
+            Fill in your details to become a Preferred Contractor.
           </p>
           <div className="mt-6 rounded-2xl border border-violet-200/40 bg-white p-6 shadow-md">
             <div className="text-sm font-semibold text-slate-900">What to expect</div>
@@ -255,4 +250,3 @@ function Field({
 
 const inputClass =
   "w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition focus:border-violet-400 focus:ring-2 focus:ring-violet-200";
-

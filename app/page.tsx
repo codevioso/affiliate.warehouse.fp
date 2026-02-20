@@ -80,7 +80,7 @@ export default function Home() {
 
       <Modal
         open={modalOpen}
-        title="Request Preferred Contractor Access"
+        title="Preferred Contractor Application"
         onClose={() => setModalOpen(false)}
       >
         <PreferredContractorAccessForm variant="modal" />

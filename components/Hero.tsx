@@ -48,8 +48,8 @@ export function Hero({ onRequestAccess }: HeroProps) {
       />
       {/* Geometric blur shapes – above overlay so they stay visible and animated */}
       <div className="absolute inset-0 z-[1] overflow-hidden" aria-hidden>
-        <div className="aw-hero-shape aw-hero-shape-1" />
-        <div className="aw-hero-shape aw-hero-shape-2" />
+        {/* <div className="aw-hero-shape aw-hero-shape-1" /> */}
+        {/* <div className="aw-hero-shape aw-hero-shape-2" /> */}
         <div className="aw-hero-shape aw-hero-shape-3" />
         <div className="aw-hero-shape aw-hero-shape-4" />
         <div className="aw-hero-shape aw-hero-shape-5" />
