@@ -9,6 +9,7 @@ import { PricingModel } from "@/components/PricingModel";
 import { FeesIncentives } from "@/components/FeesIncentives";
 import { NoLockIns } from "@/components/NoLockIns";
 import { FAQ } from "@/components/FAQ";
+import { Reviews } from "@/components/Reviews";
 import { ComplianceEthics } from "@/components/ComplianceEthics";
 import { LegalDisclaimer } from "@/components/LegalDisclaimer";
 import { PreferredContractorAccessForm } from "@/components/LeadForm";
@@ -70,6 +71,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <Reviews />
       </main>
 
       <Footer
