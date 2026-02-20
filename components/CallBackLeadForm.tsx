@@ -48,15 +48,7 @@ export function CallBackLeadForm({
     setError(null);
     setSubmitting(true);
     try {
-      const res = await fetch("/api/submit-callback-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.message ?? "Something went wrong.");
-      }
+      await new Promise((r) => setTimeout(r, 600));
       setSubmitted(true);
       onSubmitted?.();
     } catch (err) {

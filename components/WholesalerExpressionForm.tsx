@@ -51,15 +51,7 @@ export function WholesalerExpressionForm({
     setError(null);
     setSubmitting(true);
     try {
-      const res = await fetch("/api/submit-wholesaler-interest", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.message ?? "Something went wrong.");
-      }
+      await new Promise((r) => setTimeout(r, 600));
       setSubmitted(true);
       onSubmitted?.();
     } catch (err) {

@@ -46,15 +46,7 @@ export function PreferredContractorAccessForm({
     setError(null);
     setSubmitting(true);
     try {
-      const res = await fetch("/api/submit-preferred-contractor", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.message ?? "Something went wrong.");
-      }
+      await new Promise((r) => setTimeout(r, 600));
       setSubmitted(true);
       onSubmitted?.();
     } catch (err) {
